@@ -10,6 +10,8 @@ from ..sigmoid_smhm import logsm_from_logmhalo_jax, DEFAULT_PARAM_VALUES
 from ..kernel_weighted_hist import triweighted_kernel_histogram_with_derivs as twhist
 from ..sigmoid_smhm import _logsm_from_logmhalo_jax_kern
 
+from timeit import default_timer as timer
+from jax import make_jaxpr
 
 NM = int(os.environ.get("GORDON_NM", 500))
 LOGM = jax_np.linspace(8, 15, NM)
@@ -17,7 +19,13 @@ PARAMS = np.array(list(DEFAULT_PARAM_VALUES.values()))
 
 
 def test_logsm_from_logmhalo_evaluates():
-    logsm = logsm_from_logmhalo_jax(LOGM, PARAMS)
+    print("LOGSM ===>")
+    print(make_jaxpr(logsm_from_logmhalo_jax)(LOGM, PARAMS))
+    start = timer()
+    for i in range(0,3000):
+        logsm = logsm_from_logmhalo_jax(LOGM, PARAMS)
+    end = timer()
+    print("<===LOGSM: "+str(end-start))
     assert np.all(np.isfinite(logsm))
 
 
