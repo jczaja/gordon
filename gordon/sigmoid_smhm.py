@@ -137,9 +137,9 @@ def _logsm_from_logmhalo_jax_kern(logm, params):
     logsm_at_logm_crit = logm_crit + smhm_ratio_logm_crit
 
     numerator = highm_index - lowm_index
-    denominator = 1 + jax_np.exp(-smhm_k_logm * (logm - logm_crit))
-    powerlaw_index = lowm_index + numerator / denominator
-    return logsm_at_logm_crit + powerlaw_index * (logm - logm_crit)
+    denominator = 1 + jax_np.exp(-smhm_k_logm * (logm - logm_crit)) # heavy
+    powerlaw_index = lowm_index + numerator / denominator # heavy
+    return logsm_at_logm_crit + powerlaw_index * (logm - logm_crit) # heavy
 
 
 logsm_from_logmhalo_jax = jax.jit(
