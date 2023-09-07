@@ -27,7 +27,7 @@ from jax.sharding import PositionalSharding
 NM = int(os.environ.get("GORDON_NM",  5010000000))      # peak mem  for 1 JAX device
 
 NUM_DEVICES = int(os.environ.get("DEVICES_NM",  1))     # Number of XPUs to be used 
-
+NUM_ITERS = 10000
 LOGM = np.linspace(8, 15, NM)
 #LOGM = jnp.linspace(8, 15, NM)  # optimized, but result is located on single XPU
 PARAMS = np.array(list(DEFAULT_PARAM_VALUES.values()))
