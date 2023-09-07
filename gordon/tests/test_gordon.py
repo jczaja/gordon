@@ -42,6 +42,7 @@ def test_logsm_from_logmhalo_evaluates():
   LOGM_DEVICES = device_put(LOGM,sharding.reshape(NUM_DEVICES,)) 
   PARAMS_DEVICES = device_put(PARAMS,sharding.replicate()) 
   visualize_array_sharding(LOGM_DEVICES)
+  print(make_jaxpr(logsm_from_logmhalo_jax)(LOGM_DEVICES, PARAMS_DEVICES))
   start = timer()
   for i in range(0,NUM_ITERS):
      logsm = logsm_from_logmhalo_jax(LOGM_DEVICES, PARAMS_DEVICES)
