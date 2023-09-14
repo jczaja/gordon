@@ -23,13 +23,10 @@ from jax.sharding import PositionalSharding
 
 # test_logsm_from_logmhalo_evaluates
 #NM = int(os.environ.get("GORDON_NM",  12*5010000000))  # peak mem  for 12 JAX devices
-#NM = int(os.environ.get("GORDON_NM", 20000100000))     # peak mem  for 4 JAX devices
-#NM = int(os.environ.get("GORDON_NM",  10000002000))    # peak mem  for 2 JAX devices
-NM = int(os.environ.get("GORDON_NM",  5010000000))      # peak mem  for 1 JAX device
-
-# test_logsm_from_logmhalo_evaluates
 #NM = int(os.environ.get("GORDON_NM",  5010000000))      # peak mem  for 1 JAX device
 
+# test_kernel_weighted_hist_of_model_gradients
+NM = int(os.environ.get("GORDON_NM",  1388000000))      # peak mem  for 1 JAX device  
 
 NUM_DEVICES = int(os.environ.get("DEVICES_NM",  1))     # Number of XPUs to be used 
 NUM_ITERS = 100
